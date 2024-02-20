@@ -1,7 +1,18 @@
 package com.example.evento_api.controlador;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.evento_api.dto.request.SolicitudRegistroDTO;
+import com.example.evento_api.dto.request.SolicitudInicioSesionDTO;
+import com.example.evento_api.dto.response.RespuestaAutenticacionJwtDTO;
+import com.example.evento_api.servicio.AuthenticationService;
+
+
 
 /***
  * Autenticación y Seguridad
@@ -11,17 +22,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v0/auth")
 public class AuthControlador {
  
-	/*
-	  	Registro de Usuarios
-		POST /api/v0/auth/registro
-		Permite a los nuevos usuarios registrarse en la aplicación
-
-	 */
+	@Autowired
+    AuthenticationService authenticationService;
 	
-	/*
-	 * Inicio de Sesión
-		POST /api/v0/auth/login
-		Autentica a los usuarios y devuelve un token JWT para las subsiguientes solicitudes autenticadas.
-	 
-	 */
+	
+	
+    @PostMapping("/registro")
+    public ResponseEntity<RespuestaAutenticacionJwtDTO> registro(@RequestBody SolicitudRegistroDTO request) {
+        return ResponseEntity.ok(authenticationService.signup(request));
+    }
+
+    @PostMapping("/inicio")
+    public ResponseEntity<RespuestaAutenticacionJwtDTO> inicioSesion(@RequestBody SolicitudInicioSesionDTO request) {
+        return ResponseEntity.ok(authenticationService.signup(request));
+    }
 }
