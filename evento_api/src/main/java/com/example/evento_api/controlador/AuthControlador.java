@@ -26,14 +26,13 @@ public class AuthControlador {
     AuthenticationService authenticationService;
 	
 	
-	
     @PostMapping("/registro")
     public ResponseEntity<RespuestaAutenticacionJwtDTO> registro(@RequestBody SolicitudRegistroDTO request) {
-        return ResponseEntity.ok(authenticationService.signup(request));
+        return ResponseEntity.ok(authenticationService.registro(request));
     }
 
-    @PostMapping("/inicio")
-    public ResponseEntity<RespuestaAutenticacionJwtDTO> inicioSesion(@RequestBody SolicitudInicioSesionDTO request) {
-        return ResponseEntity.ok(authenticationService.signup(request));
+    @PostMapping("/acceso")
+    public ResponseEntity<RespuestaAutenticacionJwtDTO> acceso(@RequestBody SolicitudInicioSesionDTO request) {
+        return ResponseEntity.ok(authenticationService.acceso(request));
     }
 }
